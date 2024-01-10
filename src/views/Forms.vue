@@ -1,107 +1,229 @@
 <template>
-  <div class="c0">
-    <img src="../assets/logo0.png" alt="Header Logo" class="header-logo">
-    <div class="container">
-      <div class="content">
-        <img src="../assets/logo.png" alt="Logo" class="logo">
+  <v-container fluid>
+<div v-show="isLoggedIn">
+ 
+    <v-layout>
+      <v-navigation-drawer
+        v-model="drawer"
+        temporary
+      >
+        <v-list-item
+          prepend-avatar="data:image/jpeg;base64,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"
+          :title= "username"
+        ></v-list-item>
+
+        <v-divider></v-divider>
+
+      <v-list density="compact" nav>
+        <v-list-item prepend-icon="mdi-domain" title="Request" value="form" @click="showform"   ></v-list-item>
+
+        <v-list-item prepend-icon="mdi-view-dashboard" title="History" value="history"   @click="showtable"  ></v-list-item>
        
-        <form class="f1" @submit.prevent="onSubmit">
-          <div class="header-container">
-      <img src="../assets/logo0.png" alt="Header Logo" class="header-logo0">
-      <h4>User Informations :</h4>
-    </div>
-          <div class="form">
-            <div class="c1">
-              <label for="Full name" class="label">Full Name</label>
-              <input v-model="fullName" type="text" id="Full name" placeholder="Full name" class="input black-background">
+        <v-btn @click="logout()" color="#36013c" style="margin-top: 450px;">
+          <v-icon
+          start
+          icon="mdi-arrow-right"
+        ></v-icon>
+  LOGOUT
+</v-btn>        
+      </v-list>
+      </v-navigation-drawer>
+      <v-main style="height: 1100px; margin: 0; ">
+        
+        <div class="d-flex h-1000 c0" :class="{ 'alert-visible': alert.show }">
+         
 
-              <label for="gender" class="label">Gender</label>
-              <select v-model="formData.gender" id="gender" placeholder="Gender" class="input black-background">
-                <option value="" disabled selected>Select Gender</option>
-                <option value="male" selected>Male</option>
-                <option value="female">Female</option>
-              </select>
+          
 
-              <label for="married" class="label">Married</label>
-              <select v-model="formData.married" id="married" class="input black-background">
-                <option value="" disabled selected>Select Married</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
 
-              <label for="dependents" class="label">Dependents</label>
-              <select v-model="formData.dependents" id="dependents" class="input black-background">
-                <option value="" disabled selected>Select Dependents</option>
-                <option value="0">0 enfant</option>
-                <option value="1">1 enfants</option>
-                <option value="2">2 enfants</option>
-                <option value="3+">3+ enfants</option>
-              </select>
+          <v-row justify = "center" >
+      <v-col>
+        <v-row justify="center">
+          <v-img v-if="!showFormHistory" src="../assets/logo0.png" alt="Header Logo" class="header-logo"></v-img>
+          <v-img  v-if="showFormHistory" src="../assets/logo0.png" alt="Header Logo" class="header-logo1"></v-img>
+       
+        </v-row>
 
-              <label for="education" class="label">Education</label>
-              <select v-model="formData.education" id="education" class="input black-background">
-                <option value="" disabled selected>Select Education</option>
-                <option value="graduate">Graduate</option>
-                <option value="not-graduate">Not Graduate</option>
-              </select>
+        <v-row   v-if="!showFormHistory">
+          <v-col>
+            <v-row justify="center">
+              <v-img src="../assets/logo.png" alt="Logo" class="logo"></v-img>
+            </v-row>
+          </v-col>
+          <v-col>
+            <v-form @submit.prevent="onSubmit"  style=" z-index:1;
+    margin-bottom: 20px;
+    background-color: #fff;
+     margin-right: -40px;
+    width: 700px;
+   height: 850px;
+    padding: 60px;
+    padding-bottom: 10px;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #36013c;">
+              <v-row>
+                <v-col>
+                  <v-row>
+                    <v-col>
+                      <div class="header-container">
+                        <v-img src="../assets/logo0.png" alt="Header Logo" class="header-logo0"></v-img>
+                        <h4>User Informations :</h4>
+                      </div>
+                    </v-col>
+                  </v-row>
 
-              <label for="self-employed" class="label">Self Employed</label>
-              <select v-model="formData.selfEmployed" id="self-employed" class="input black-background">
-                <option value="" disabled selected>Select Employed</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </div>
+                  <v-row>
+                    <v-col class="c1">
+                      <v-label for="Full name">Full Name</v-label>
+                      <v-text-field v-model="fullName" id="Full name" placeholder="Full name" outlined></v-text-field>
 
-            <div class="c2">
-              <label for="applicant-income" class="label">Applicant Income</label>
-              <input v-model="formData.applicantIncome" type="text" id="applicant-income" placeholder="Applicant Income" class="input black-background">
+                      <v-label for="gender">Gender</v-label>
+                      <v-select v-model="formData.gender" id="gender" placeholder="Select Gender" :items="genderOptions" outlined></v-select>
 
-              <label for="coapplicant-income" class="label">Coapplicant Income</label>
-              <input v-model="formData.coapplicantIncome" type="text" id="coapplicant-income" placeholder="Coapplicant Income" class="input black-background">
+                      <v-label for="married">Married</v-label>
+                      <v-select v-model="formData.married" id="married" placeholder="Select Married" :items="yesNoOptions" outlined></v-select>
 
-              <label for="loan-amount" class="label">Loan Amount</label>
-              <input v-model="formData.loanAmount" type="text" id="loan-amount" placeholder="Loan Amount" class="input black-background">
+                      <v-label for="dependents">Dependents</v-label>
+                      <v-select v-model="formData.dependents" id="dependents" placeholder="Select Dependents" :items="dependentsOptions" outlined></v-select>
 
-              <label for="loan-term" class="label">Loan Amount Term</label>
-              <input v-model="formData.loanTerm" type="text" id="loan-term" placeholder="Loan Amount Term" class="input black-background">
+                      <v-label for="education">Education</v-label>
+                      <v-select v-model="formData.education" id="education" placeholder="Select Education" :items="educationOptions" outlined></v-select>
 
-              <label for="credit-history" class="label">Credit History</label>
-              <select v-model="formData.creditHistory" id="credit-history" placeholder="Credit History" class="input black-background">
-                <option value="" disabled selected>Select Credit History</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
+                      <v-label for="self-employed">Self Employed</v-label>
+                      <v-select v-model="formData.selfEmployed" id="self-employed" placeholder="Select Employed" :items="yesNoOptions" outlined></v-select>
+                    </v-col>
 
-              <label for="property-area" class="label">Property Area</label>
-              <select v-model="formData.propertyArea"  id="property-area" placeholder="Property Area"   class="input black-background">
-                <option value="" disabled selected>Select Property Area</option>
-                <option value="Urban">Urban</option>
-                <option value="SemiUrban">SemiUrban</option>
-                <option value="Rural">Rural</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="button">Show result</button>
-        </form>
+                    <v-col class="c2">
+                      <v-label for="applicant-income">Applicant Income</v-label>
+                      <v-text-field v-model="formData.applicantIncome" id="applicant-income" placeholder="Applicant Income" outlined></v-text-field>
+
+                      <v-label for="coapplicant-income">Coapplicant Income</v-label>
+                      <v-text-field v-model="formData.coapplicantIncome" id="coapplicant-income" placeholder="Coapplicant Income" outlined></v-text-field>
+
+                      <v-label for="loan-amount">Loan Amount</v-label>
+                      <v-text-field v-model="formData.loanAmount" id="loan-amount" placeholder="Loan Amount" outlined></v-text-field>
+
+                      <v-label for="loan-term">Loan Amount Term</v-label>
+                      <v-text-field v-model="formData.loanTerm" id="loan-term" placeholder="Loan Amount Term" outlined></v-text-field>
+
+                      <v-label for="credit-history">Credit History</v-label>
+                      <v-select v-model="formData.creditHistory" id="credit-history" placeholder="Select Credit History" :items="yesNoOptions" outlined></v-select>
+
+                      <v-label for="property-area">Property Area</v-label>
+                      <v-select v-model="formData.propertyArea" id="property-area" placeholder="Select Property Area" :items="propertyAreaOptions" outlined></v-select>
+                    </v-col>
+                  </v-row>
+
+                  <v-row justify="center">
+                    <v-btn type="submit" class="button" block>Show result</v-btn>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-form>
+          </v-col>
+          
+      
+        </v-row>
+      </v-col>
+    </v-row>
+    <v-btn 
+             v-if="!showFormHistory"
+            color="#36013c"
+            @click.stop="drawer = !drawer"
+            icon="mdi-format-align-justify"  >
+
+            
+          </v-btn>
+          <v-btn 
+          v-if="showFormHistory"
+             style="margin-right: -1250px;"
+             color="#36013c"
+             @click.stop="drawer = !drawer"
+             icon="mdi-format-align-justify"  >
+ 
+             
+           </v-btn>
+ 
+   <div  v-show="showFormHistory "><br><br><br><br><br>
+
+        <v-row justify="center" v-if="showFormHistory">
+      <v-col>
+        <v-data-table
+     
+  :items="ps"
+  :headers="headers"
+  style="margin-left:5px; width:1250px"
+>
+  <template v-slot:top>
+    <v-toolbar flat>
+      <v-toolbar-title style="color:#36013c; font-size: large;" >User History : </v-toolbar-title>
+    </v-toolbar>
+  </template>
+
+  <template v-slot:item="{ item }">
+
+    <tr>
+      <td>{{ item.Gender }}</td>
+              <td>{{ item.Married }}</td>
+              <td>{{ item.Education }}</td>
+              <td>{{ item.Self_Employed }}</td>
+              <td>{{ item.Dependents }}</td>
+              <td>{{ item.ApplicantIncome }}</td>
+              <td>{{ item.CoapplicantIncome }}</td>
+              <td>{{ item.LoanAmount }}</td>
+              <td>{{ item.Loan_Amount_Term }}</td>
+              <td>{{ item.Credit_History }}</td>
+              <td>{{ item.Property_Area }}</td>
+              <td>{{ item.LoanStatus }} </td>
+          
+                <td>
+      <v-btn style="    background: linear-gradient(to right, #400546, #04eb7f, #5CE1E6);" small @click="generatePDF(item)">
+  <v-icon color="#fff">mdi-download</v-icon>
+  <span style="color: #fff;">Download Receipt</span>
+</v-btn>
+
+                </td>
+              </tr>
+  </template>
+</v-data-table>
+
+      </v-col>
+    </v-row>
+
+
       </div>
-    </div>
-  </div>
-   
-   
-    <custom-alert
-      :show="alert.show"
-      :message="alert.message"
-      :type="alert.type"
-      @close="closeAlert"
-    ></custom-alert>
+ 
+  
+ 
+        </div>
+        
+      </v-main>
+    </v-layout>
+ 
+
+</div>
 
 
+
+
+ 
+ 
+
+ 
+    <custom-alert :show="alert.show" :message="alert.message" :type="alert.type" @close="closeAlert"></custom-alert>
+   
+  </v-container>
+  
 </template>
+
 
 <script>
 import axios from 'axios';
 import CustomAlert from '@/components/CustomAlert.vue';
+import cloneDeep from 'lodash/cloneDeep';
+import jsPDF from 'jspdf';
+import router from '@/router'; 
 export default {
   name: 'formL',
   components: {
@@ -109,8 +231,30 @@ export default {
   },
   data() {
     return {
-    
+      
+      headers: [
+        { title: 'Gender', key: 'Gender' },
+        { title: 'Married', key: 'Married' },
+        { title: 'Education', key: 'Education' },
+        { title: 'Self Employed',key: 'Self_Employed' },
+        { title: 'Dependents',key: 'Dependents' },
+        {title: 'Applicant Income', key: 'ApplicantIncome' },
+        { title: 'Coapplicant Income', key: 'CoapplicantIncome' },
+        { title: 'Loan Amount', key: 'Loan_Amount' },
+        { title: 'Loan Amount Term',key: 'Loan_Amount_Term' },
+        { title: 'Credit History', key: 'Credit_History' },
+        { title: 'Property Area',key: 'Property_Area' },
+        { title: 'Loan Status', key: 'LoanStatus' },
+        { title: 'Receipt', key:'actions', sortable: false, headerAlign: 'center', align: 'center' },
+
+      ],
+      username:' ',
+      drawer: null,
+      showFormHistory: false,
+      ps: [],
+      Temp:{},
       fullName: '',
+      isLoggedIn:false,
       formData: {
         gender: '',
         married: '',
@@ -123,42 +267,153 @@ export default {
         loanTerm: '',
         creditHistory: '',
         propertyArea: '',
+        
       },
       alert: {
-      show: false,
-      message: '',
-      type: 'info',
-    },
+        show: false,
+        message: '',
+        type: 'info',
+      },
+      genderOptions: ['Male', 'Female'],
+      yesNoOptions: ['Yes', 'No'],
+      dependentsOptions: ['0 enfant', '1 enfants', '2 enfants', '3+ enfants'],
+      educationOptions: ['Graduate', 'Not Graduate'],
+      propertyAreaOptions: ['Urban', 'SemiUrban', 'Rural'],
     };
   },
+  mounted() {
+    
+    if ( localStorage.getItem('token') !== null) {
+      this.isLoggedIn = true;  
+    } 
+    this.username=localStorage.getItem('username')
+     
+    
+  },
+  
   methods: {
+    async showform() {
+  this.showFormHistory = false;
+    },
+    async showtable() {
+  this.showFormHistory = true;
+
+  try {
+    let id = await this.currentuser();
+    console.log(id);
+
+    const response = await axios.get(`http://127.0.0.1:5000/get_loan_data/${id}`);
+    
+    if (response.status === 200) {
+      console.log("history", response.data);
+      this.ps = response.data.data;
+      return response.data;
+    } else {
+      console.error(`Failed to fetch history. Status code: ${response.status}`);
+      return { error: `Failed to fetch history. Status code: ${response.status}` };
+    }
+  } catch (error) {
+    console.error(`Failed to fetch history. ${error.message}`);
+    return { error: `Failed to fetch history. ${error.message}` };
+  }
+},
+
+ async currentuser() {
+       
+console.log( `Bearer ${localStorage.getItem('token')}` )
+      try {
+        const response = await axios.get(' http://127.0.0.1:5000/current_user',  {
+           headers: {
+             Authorization: 'Bearer ' +localStorage.getItem('token')
+           },
+         });
+         console.log(response.data)
+      
+         if (response.status == 200) {
+  if (response.data ) {
+    console.log("user ", response.data.user_id);
+    return response.data.user_id;
+  } else {
+    this.$router.push('/login');
+    return { error: "User data not available in the response" };
+  }
+} 
+    else {
+      this.$router.push('/login');
+  return { error: `Failed to fetch current user. Status code: ${response.status}` };
+}
+
+      } catch (error) {
+        this.$router.push('/login');
+        return { error: `Failed to fetch current user. ${error.message}` };
+      }
+    },
+    async logout() {
+  try {
+    
+    const response = await axios.post(' http://127.0.0.1:5000/logout');
+    console.log(response.data );
+
+    // Redirect to the login page
+    router.push('/login'); // Adjust the route name based on your setup
+  } catch (error) {
+    // Handle any errors that occur during the logout process.
+    console.error('Logout failed:', error);
+  }
+},
+    async save(status) {
+      try {
+      let id = await  this.currentuser()
+      console.log(id)
+      this.Temp.id_user = id;
+    this.Temp.loanStatus = status;
+
+    const response = await axios.post(` http://127.0.0.1:5000/save_loan_data`, this.Temp);
+       if (response.status === 200) {
+          console.log("messg",response.data);
+          return response.data;
+        } else {
+          return { error: `Failed to save. Status code: ${response.status}` };
+        }
+      } catch (error) {
+        return { error: `Failed to save. ${error.message}` };
+      }
+    },
+    
     async onSubmit() {
-      console.log(this.formData.gender)
+      console.log("hhh" );
+      this.Temp = cloneDeep(this.formData);
+       
+    
+      console.log(this.formData.dependents[0])
       console.log(this.formData)
-      if (this.formData.gender =="male") {
+   
+    
+ 
+      if (this.formData.gender =="Male") {
         this.formData.gender = 0;
       } else {
         this.formData.gender = 1;
       }
-      if (this.formData.married =="yes") {
+      if (this.formData.married =="Yes") {
         this.formData.married = 0;
       } else {this.formData.married = 1;
       }
 
-      if (this.formData.education =="graduate") {
+      if (this.formData.education =="Graduate") {
         this.formData.education = 1;
       } 
       else {
         this.formData.education = 0;
       }
 
-      if (this.formData.selfEmployed =="yes") {
+      if (this.formData.selfEmployed =="Yes") {
         this.formData.selfEmployed = 0;
       } else {
         this.formData.selfEmployed = 1;
       }
 
-      if (this.formData.creditHistory =="yes") {
+      if (this.formData.creditHistory =="Yes") {
         this.formData.creditHistory = 1;
       } else {
         this.formData.creditHistory = 0;
@@ -196,7 +451,7 @@ console.log(this.formData.creditHistory);
 console.log(this.formData.propertyArea); 
 
       try {
-        const response = await axios.post("http://127.0.0.1:5000/predictLoanStatus", this.formData, {
+        const response = await axios.post(" http://127.0.0.1:5000/predictLoanStatus", this.formData, {
           headers: {
             'API-Key': 'LPSIBD',
             'Content-Type': 'application/json',
@@ -204,6 +459,8 @@ console.log(this.formData.propertyArea);
         });
         
         console.log("Response:", response.data["prediction"]);
+        console.log(this.Temp) 
+          await this.save(response.data["prediction"]);
         var c=""
         if(response.data["prediction"]=="Yes"){
           c="Accepted"
@@ -233,7 +490,55 @@ console.log(this.formData.propertyArea);
     closeAlert() {
       this.alert.show = false;
     },
-   
+    async generatePDF(rowData) {
+      // Create a new jsPDF instance
+      const pdf = new jsPDF();
+
+      // Load the logo image asynchronously
+      const loadImage = async (src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = src;
+        });
+      };
+
+      // Add application logo at the top-left with a 20px margin
+      try {
+        const logo = await loadImage(require('@/assets/logo0.png')); // Adjust the path accordingly
+        pdf.addImage(logo, 'PNG', 6, 6, 50, 50); // Adjust width and height as needed
+      } catch (error) {
+        console.error('Error loading logo:', error);
+      }
+
+      // Add content to the PDF
+      pdf.text(`Receipt for: ${this.username}`, 40, 50); // Adjust positioning
+      pdf.text(`Ref: ${rowData._id}`, 40, 60); // Adjust positioning
+      pdf.text(`Gender: ${rowData.Gender}`, 40, 70); // Adjust positioning
+      pdf.text(`Married: ${rowData.Married}`, 40, 80);
+      pdf.text(`Education: ${rowData.Education}`, 40, 90);
+      pdf.text(`Self Employed: ${rowData.Self_Employed}`, 40, 100);
+      pdf.text(`Dependents: ${rowData.Dependents}`, 40, 110);
+      pdf.text(`Applicant Income: ${rowData.ApplicantIncome}`, 40, 120);
+      pdf.text(`Coapplicant Income: ${rowData.CoapplicantIncome}`, 40, 130);
+      pdf.text(`Loan Amount: ${rowData.LoanAmount}`, 40, 140);
+      pdf.text(`Loan Term: ${rowData.Loan_Amount_Term}`, 40, 150);
+      pdf.text(`Credit History: ${rowData.Credit_History}`, 40, 160);
+      pdf.text(`Property Area: ${rowData.Property_Area}`, 40, 170);
+
+      // Bold text for credit acceptation
+      pdf.setFont('Helvetica', 'bold');
+pdf.text(`Acceptation of Credit: ${rowData.LoanStatus}`, 50, 180);
+pdf.setFont('Helvetica', 'normal'); // Reset font style
+
+      // Add the current date
+      const currentDate = new Date().toLocaleDateString();
+      pdf.text(`Date: ${currentDate}`,160, 190);
+
+      // Save the PDF file
+      pdf.save('receipt.pdf');
+    },
   },
 };
 </script>
@@ -273,16 +578,25 @@ console.log(this.formData.propertyArea);
     width: 150px;
     height: 140px;
     z-index:2;
-    margin-top:-45px;
-    margin-left: 20px;
+    margin-top: -23px;
+    margin-left: -1100px;
+    
+}
+
+.header-logo1 {
+    width: 150px;
+    height: 140px;
+    z-index:2;
+    margin-top: -23px;
+    margin-left: -1100px;
     
 }
 
 .logo {
-    width: 400px;
-    height: auto;
-    margin-right: 150px;
-   
+    width: 300px;
+    height: 550px;
+    margin-right: -10px;
+    margin-top:130px;
 }
 
 .form {
@@ -303,8 +617,8 @@ console.log(this.formData.propertyArea);
     margin-bottom: 20px;
     background-color: #fff;
     color:#fff;
-    width: 500px;
-    height: 570px;
+    width: 200px;
+    height: 200px;
     padding: 60px;
     padding-bottom: 10px;
     border: 1px solid #fff;
@@ -345,7 +659,7 @@ console.log(this.formData.propertyArea);
 }
 .header-logo0{
   margin-top:-80px;
-margin-left:-50px;
+margin-left:-280px;
 width:130px;
 z-index:1;
 height:130px;
@@ -357,10 +671,18 @@ height:130px;
 }
 h4{
   margin-top:-40px;
-  margin-left:80px;
+  margin-left:-100px;
   color:#2c3e50;
   font-size:1.4em;
-  font-family:;
 }
+ 
+  .custom-btn {
+  color: #ffffff; /* Définissez la couleur du texte */
+  background-color: #007bff; /* Définissez la couleur de fond */
+  /* Ajoutez d'autres propriétés de style au besoin */
+}
+body.alert-visible {
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+  }
   </style>
   

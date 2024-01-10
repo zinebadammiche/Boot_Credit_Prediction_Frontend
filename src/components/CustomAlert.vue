@@ -1,4 +1,5 @@
 <template>
+  
     <div v-if="show" :class="['custom-alert', type]" style="display: flex; background: #fff;">
         
         <div v-if="type === 'success'" class="icon-container" style="background: #fff;">
@@ -46,7 +47,7 @@
   <style scoped>
   .custom-alert {
     position: fixed;
-    z-index: 2;
+    z-index: 100000;
     top: 100px;
     left: 50%;
     transform: translateX(-50%)  ; 
