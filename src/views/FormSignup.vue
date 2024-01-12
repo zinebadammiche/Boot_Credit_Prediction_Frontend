@@ -1,16 +1,18 @@
 <template>
-    <div>
-      <v-img class="mx-auto my-6" max-width="228" width="200" src="../assets/logo0.png"></v-img>
+    <div style="background-color: #f5f6f7; margin-top: 2px; height: 120vh;">
+      <v-img class="mx-auto my-3" max-width="228" width="200" src="../assets/logo0.png"></v-img>
   
-      <v-card class="mx-auto pa-12 pb-8 c" id="c" elevation="10" max-width="448" rounded="lg">
-        <div class="text-subtitle-1 text-medium-emphasis">Sign Up</div>
+      <v-card class="mx-auto pa-12 pb-8 c" id="c"  elevation="15" max-width="448" rounded="lg">
+        <div class=" " style="color: #1A6EB7; font-size: 1.2em;">Sign Up</div>
   
        
            
             <v-text-field
+            clearable
               v-model="Name"
-              label="First Name"
+              label="Username"
               dense
+              
               outlined
               placeholder="Enter your first name"
             ></v-text-field>
@@ -22,15 +24,20 @@
           v-model="email"
           label="Email address"
           dense
+          clearable
+          
           outlined
+           
           placeholder="Enter your email address"
           prepend-inner-icon="mdi-email-outline"
         ></v-text-field>
   
         <v-text-field
+       
           v-model="password"
           label="Password"
           dense
+          clearable
           outlined
           placeholder="Enter your password"
           prepend-inner-icon="mdi-lock-outline"
@@ -42,7 +49,9 @@
         <v-text-field
           v-model="confirmPassword"
           label="Confirm Password"
+          
           dense
+          clearable
           outlined
           placeholder="Confirm your password"
           prepend-inner-icon="mdi-lock-outline"
@@ -61,7 +70,7 @@
   block
   class="mb-8"
   color="#fff"
-  style="background: linear-gradient(to right, #400546, #1fb16d, #5CE1E6);"
+  style="background: linear-gradient(to right, #1A6EB7, #01A89E,#01A89E,#01A89E, #3E63F9);"
   size="large"
   @click="signup()"
   variant="tonal"
@@ -70,8 +79,8 @@
 </v-btn>
   
         <v-card-text class="text-center">
-          <router-link class="text-decoration-none" to="/login" style="color: #36013c;">
-            Already have an account? Login  <v-icon icon="mdi-chevron-right" style="color: #36013c;"></v-icon>
+          <router-link class="text-decoration-none" to="/login" style="color: #3E63F9;">
+            Already have an account? Login  <v-icon icon="mdi-chevron-right" style="color: #01A89E;"></v-icon>
           </router-link>
         </v-card-text>
       </v-card>
@@ -117,8 +126,9 @@
   <style scoped>
   .c {
     margin-top: -60px;
-    box-shadow: 0 0 15px rgba(54, 1, 60, 0.5);
+  
     margin-bottom: 20px;
+    background-color: #f5f6f7;
   }
   </style>
   

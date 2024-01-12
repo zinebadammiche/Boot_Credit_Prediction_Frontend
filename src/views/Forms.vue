@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid>
-<div v-show="isLoggedIn">
+  <v-container fluid style="background-color: #f5f6f7;">
+<div v-show="isLoggedIn" >
  
     <v-layout>
       <v-navigation-drawer
@@ -19,7 +19,7 @@
 
         <v-list-item prepend-icon="mdi-view-dashboard" title="History" value="history"   @click="showtable"  ></v-list-item>
        
-        <v-btn @click="logout()" color="#36013c" style="margin-top: 450px;">
+        <v-btn @click="logout()" color="#1A6EB7" class="my-50">
           <v-icon
           start
           icon="mdi-arrow-right"
@@ -30,7 +30,7 @@
       </v-navigation-drawer>
       <v-main style="height: 1100px; margin: 0; ">
         
-        <div class="d-flex h-1000 c0" :class="{ 'alert-visible': alert.show }">
+        <div class="d-flex h-1000 c0" :class="{ 'alert-visible': alert.show }" style="background-color: #f5f6f7;" >
          
 
           
@@ -53,7 +53,7 @@
           <v-col>
             <v-form @submit.prevent="onSubmit"  style=" z-index:1;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: #f5f6f7;
      margin-right: -40px;
     width: 700px;
    height: 850px;
@@ -61,7 +61,7 @@
     padding-bottom: 10px;
     border: 1px solid #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px #36013c;">
+    box-shadow: 0 0 15px  #505050 ;">
               <v-row>
                 <v-col>
                   <v-row>
@@ -76,42 +76,42 @@
                   <v-row>
                     <v-col class="c1">
                       <v-label for="Full name">Full Name</v-label>
-                      <v-text-field v-model="fullName" id="Full name" placeholder="Full name" outlined></v-text-field>
+                      <v-text-field  clearable v-model="fullName" id="Full name" placeholder="Full name" outlined></v-text-field>
 
                       <v-label for="gender">Gender</v-label>
-                      <v-select v-model="formData.gender" id="gender" placeholder="Select Gender" :items="genderOptions" outlined></v-select>
+                      <v-select  clearable v-model="formData.gender" id="gender" placeholder="Select Gender" :items="genderOptions" outlined></v-select>
 
                       <v-label for="married">Married</v-label>
-                      <v-select v-model="formData.married" id="married" placeholder="Select Married" :items="yesNoOptions" outlined></v-select>
+                      <v-select  clearable v-model="formData.married" id="married" placeholder="Select Married" :items="yesNoOptions" outlined></v-select>
 
                       <v-label for="dependents">Dependents</v-label>
-                      <v-select v-model="formData.dependents" id="dependents" placeholder="Select Dependents" :items="dependentsOptions" outlined></v-select>
+                      <v-select clearable v-model="formData.dependents" id="dependents" placeholder="Select Dependents" :items="dependentsOptions" outlined></v-select>
 
                       <v-label for="education">Education</v-label>
-                      <v-select v-model="formData.education" id="education" placeholder="Select Education" :items="educationOptions" outlined></v-select>
+                      <v-select  clearable v-model="formData.education" id="education" placeholder="Select Education" :items="educationOptions" outlined></v-select>
 
                       <v-label for="self-employed">Self Employed</v-label>
-                      <v-select v-model="formData.selfEmployed" id="self-employed" placeholder="Select Employed" :items="yesNoOptions" outlined></v-select>
+                      <v-select  clearable v-model="formData.selfEmployed" id="self-employed" placeholder="Select Employed" :items="yesNoOptions" outlined></v-select>
                     </v-col>
 
                     <v-col class="c2">
                       <v-label for="applicant-income">Applicant Income</v-label>
-                      <v-text-field v-model="formData.applicantIncome" id="applicant-income" placeholder="Applicant Income" outlined></v-text-field>
+                      <v-text-field  clearable v-model="formData.applicantIncome" id="applicant-income" placeholder="Applicant Income" outlined></v-text-field>
 
                       <v-label for="coapplicant-income">Coapplicant Income</v-label>
-                      <v-text-field v-model="formData.coapplicantIncome" id="coapplicant-income" placeholder="Coapplicant Income" outlined></v-text-field>
+                      <v-text-field  clearable v-model="formData.coapplicantIncome" id="coapplicant-income" placeholder="Coapplicant Income" outlined></v-text-field>
 
                       <v-label for="loan-amount">Loan Amount</v-label>
-                      <v-text-field v-model="formData.loanAmount" id="loan-amount" placeholder="Loan Amount" outlined></v-text-field>
+                      <v-text-field   clearable v-model="formData.loanAmount" id="loan-amount" placeholder="Loan Amount" outlined></v-text-field>
 
                       <v-label for="loan-term">Loan Amount Term</v-label>
-                      <v-text-field v-model="formData.loanTerm" id="loan-term" placeholder="Loan Amount Term" outlined></v-text-field>
+                      <v-text-field  clearable v-model="formData.loanTerm" id="loan-term" placeholder="Loan Amount Term" outlined></v-text-field>
 
                       <v-label for="credit-history">Credit History</v-label>
-                      <v-select v-model="formData.creditHistory" id="credit-history" placeholder="Select Credit History" :items="yesNoOptions" outlined></v-select>
+                      <v-select  clearable v-model="formData.creditHistory" id="credit-history" placeholder="Select Credit History" :items="yesNoOptions" outlined></v-select>
 
                       <v-label for="property-area">Property Area</v-label>
-                      <v-select v-model="formData.propertyArea" id="property-area" placeholder="Select Property Area" :items="propertyAreaOptions" outlined></v-select>
+                      <v-select  clearable v-model="formData.propertyArea" id="property-area" placeholder="Select Property Area" :items="propertyAreaOptions" outlined></v-select>
                     </v-col>
                   </v-row>
 
@@ -129,7 +129,8 @@
     </v-row>
     <v-btn 
              v-if="!showFormHistory"
-            color="#36013c"
+           style=" background: linear-gradient(to right, #01A89E ,#1A6EB7,#01A89E );       color: #fff;"
+    
             @click.stop="drawer = !drawer"
             icon="mdi-format-align-justify"  >
 
@@ -137,8 +138,9 @@
           </v-btn>
           <v-btn 
           v-if="showFormHistory"
-             style="margin-right: -1250px;"
-             color="#36013c"
+              
+             style="margin-right: -1590px; background: linear-gradient(to right, #01A89E ,#1A6EB7,#01A89E );       color: #fff;"
+    
              @click.stop="drawer = !drawer"
              icon="mdi-format-align-justify"  >
  
@@ -153,11 +155,11 @@
      
   :items="ps"
   :headers="headers"
-  style="margin-left:5px; width:1250px"
+  style="margin-left:-10px; width:1600px ;max-height:1000px;" 
 >
   <template v-slot:top>
     <v-toolbar flat>
-      <v-toolbar-title style="color:#36013c; font-size: large;" >User History : </v-toolbar-title>
+      <v-toolbar-title style="color: #1A6EB7   ; font-size:2em;" >User History : </v-toolbar-title>
     </v-toolbar>
   </template>
 
@@ -178,7 +180,8 @@
               <td>{{ item.LoanStatus }} </td>
           
                 <td>
-      <v-btn style="    background: linear-gradient(to right, #400546, #04eb7f, #5CE1E6);" small @click="generatePDF(item)">
+      <v-btn style="   background:   #01A89E ; 
+     " small @click="generatePDF(item)">
   <v-icon color="#fff">mdi-download</v-icon>
   <span style="color: #fff;">Download Receipt</span>
 </v-btn>
@@ -219,6 +222,7 @@
 
 
 <script>
+import 'jspdf-autotable';
 import axios from 'axios';
 import CustomAlert from '@/components/CustomAlert.vue';
 import cloneDeep from 'lodash/cloneDeep';
@@ -282,7 +286,9 @@ export default {
     };
   },
   mounted() {
-    
+    if(!this.showFormHistory){
+this.$router.push('/forms')
+    }
     if ( localStorage.getItem('token') !== null) {
       this.isLoggedIn = true;  
     } 
@@ -297,6 +303,7 @@ export default {
     },
     async showtable() {
   this.showFormHistory = true;
+  this.$router.push('/history');
 
   try {
     let id = await this.currentuser();
@@ -491,54 +498,57 @@ console.log(this.formData.propertyArea);
       this.alert.show = false;
     },
     async generatePDF(rowData) {
-      // Create a new jsPDF instance
-      const pdf = new jsPDF();
+  // Create a new jsPDF instance
+  const pdf = new jsPDF();
 
-      // Load the logo image asynchronously
-      const loadImage = async (src) => {
-        return new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = () => resolve(img);
-          img.onerror = reject;
-          img.src = src;
-        });
-      };
+  // Load the logo image asynchronously
+  const loadImage = async (src) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = src;
+    });
+  };
 
-      // Add application logo at the top-left with a 20px margin
-      try {
-        const logo = await loadImage(require('@/assets/logo0.png')); // Adjust the path accordingly
-        pdf.addImage(logo, 'PNG', 6, 6, 50, 50); // Adjust width and height as needed
-      } catch (error) {
-        console.error('Error loading logo:', error);
-      }
+  // Add application logo at the top-left with a 20px margin
+  try {
+    const logo = await loadImage(require('@/assets/logo0.png')); // Adjust the path accordingly
+    pdf.addImage(logo, 'PNG', 6, 6, 50, 50); // Adjust width and height as needed
+  } catch (error) {
+    console.error('Error loading logo:', error);
+  }
 
-      // Add content to the PDF
-      pdf.text(`Receipt for: ${this.username}`, 40, 50); // Adjust positioning
-      pdf.text(`Ref: ${rowData._id}`, 40, 60); // Adjust positioning
-      pdf.text(`Gender: ${rowData.Gender}`, 40, 70); // Adjust positioning
-      pdf.text(`Married: ${rowData.Married}`, 40, 80);
-      pdf.text(`Education: ${rowData.Education}`, 40, 90);
-      pdf.text(`Self Employed: ${rowData.Self_Employed}`, 40, 100);
-      pdf.text(`Dependents: ${rowData.Dependents}`, 40, 110);
-      pdf.text(`Applicant Income: ${rowData.ApplicantIncome}`, 40, 120);
-      pdf.text(`Coapplicant Income: ${rowData.CoapplicantIncome}`, 40, 130);
-      pdf.text(`Loan Amount: ${rowData.LoanAmount}`, 40, 140);
-      pdf.text(`Loan Term: ${rowData.Loan_Amount_Term}`, 40, 150);
-      pdf.text(`Credit History: ${rowData.Credit_History}`, 40, 160);
-      pdf.text(`Property Area: ${rowData.Property_Area}`, 40, 170);
+  // Define data for the table
+  const tableData = [
+    { field: 'Receipt for', value: this.username },
+    { field: 'Ref', value: rowData._id },
+    { field: 'Gender', value: rowData.Gender },
+    { field: 'Married', value: rowData.Married },
+    { field: 'Education', value: rowData.Education },
+    { field: 'Self Employed', value: rowData.Self_Employed },
+    { field: 'Dependents', value: rowData.Dependents },
+    { field: 'Applicant Income', value: rowData.ApplicantIncome },
+    { field: 'Coapplicant Income', value: rowData.CoapplicantIncome },
+    { field: 'Loan Amount', value: rowData.LoanAmount },
+    { field: 'Loan Term', value: rowData.Loan_Amount_Term },
+    { field: 'Credit History', value: rowData.Credit_History },
+    { field: 'Property Area', value: rowData.Property_Area },
+    { field: 'Acceptation of Credit', value: rowData.LoanStatus, bold: true },
+    { field: 'Date', value: new Date().toLocaleDateString(), bold: true },
+  ];
 
-      // Bold text for credit acceptation
-      pdf.setFont('Helvetica', 'bold');
-pdf.text(`Acceptation of Credit: ${rowData.LoanStatus}`, 50, 180);
-pdf.setFont('Helvetica', 'normal'); // Reset font style
+  // Add content to the PDF using autoTable
+  pdf.autoTable({
+    head: [['Field', 'Value']], // Headings
+    body: tableData.map((entry) => [entry.field, entry.value]), // Data excluding headings
+    startY: 70, // Adjust the starting Y position
+    styles: { fontStyle: entry => (entry.row.index === tableData.length - 1 || entry.row.index === tableData.length - 2) && entry.column.index === 1 && entry.cell.styles.bold ? 'bold' : 'normal' },
+  });
 
-      // Add the current date
-      const currentDate = new Date().toLocaleDateString();
-      pdf.text(`Date: ${currentDate}`,160, 190);
-
-      // Save the PDF file
-      pdf.save('receipt.pdf');
-    },
+  // Save the PDF file
+  pdf.save('receipt.pdf');
+}
   },
 };
 </script>
@@ -579,7 +589,7 @@ pdf.setFont('Helvetica', 'normal'); // Reset font style
     height: 140px;
     z-index:2;
     margin-top: -23px;
-    margin-left: -1100px;
+    margin-left:-1400px;
     
 }
 
@@ -588,7 +598,7 @@ pdf.setFont('Helvetica', 'normal'); // Reset font style
     height: 140px;
     z-index:2;
     margin-top: -23px;
-    margin-left: -1100px;
+    margin-left: -1400px;
     
 }
 
@@ -623,7 +633,7 @@ pdf.setFont('Helvetica', 'normal'); // Reset font style
     padding-bottom: 10px;
     border: 1px solid #fff;
     border-radius: 8px;
-    box-shadow: 0 0 10px #36013c;
+    box-shadow: 0 0 10px linear-gradient(to right, #01A89E ,#1A6EB7,#01A89E );  
 }
 .label,
 .input {
@@ -645,7 +655,8 @@ pdf.setFont('Helvetica', 'normal'); // Reset font style
 .button {
     width: 480px;
     padding: 10px;
-    background: linear-gradient(to right, #400546, #04eb7f, #5CE1E6);
+    background: linear-gradient(to right, #1A6EB7, #01A89E,#01A89E,#01A89E, #3E63F9); 
+  
     color: white;
     margin-top: 20px;
     border: none;
@@ -655,7 +666,8 @@ pdf.setFont('Helvetica', 'normal'); // Reset font style
 }
 
 .button:hover {
-    background: linear-gradient(to right, #400546, #333, #5CE1E6);
+   background: linear-gradient(to right, #1A6EB7,#01A89E , #3E63F9, #3E63F9,#01A89E);
+  
 }
 .header-logo0{
   margin-top:-80px;
@@ -672,7 +684,7 @@ height:130px;
 h4{
   margin-top:-40px;
   margin-left:-100px;
-  color:#2c3e50;
+  color:#0b5a9f;
   font-size:1.4em;
 }
  

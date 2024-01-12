@@ -1,15 +1,16 @@
-<template>
-    <div>
+<template >
+    <div  style="background-color: #f5f6f7; margin-top: -24px;  height: 100vh;">
       <v-img class="mx-auto my-6" max-width="228"  width="200" src="../assets/logo0.png"></v-img>
   
       <v-card class="mx-auto pa-12 pb-8 c "  id="c"  elevation="8" max-width="448" rounded="lg"  >
-        <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+        <div class=" " style="color: #1A6EB7; font-size: 1.2em; margin-bottom: 10px;">Log In</div>
   
         <v-text-field
+        clearable
           density="compact"
           placeholder="Email address"
           prepend-inner-icon="mdi-email-outline"
-          variant="outlined"
+       
           v-model=email
         ></v-text-field>
   
@@ -24,7 +25,7 @@
           density="compact"
           placeholder="Enter your password"
           prepend-inner-icon="mdi-lock-outline"
-          variant="outlined"
+          clearable
           @click:append-inner="visible = !visible"
           v-model=password
         ></v-text-field>
@@ -34,12 +35,12 @@
          Log in to our credit prediction application. </v-card-text>
         </v-card>
   
-        <v-btn block class="mb-8" color="#fff" @click="login()"  style="  background: linear-gradient(to right, #400546, #04eb7f, #5CE1E6);" size="large" variant="tonal">
+        <v-btn block class="mb-8" color="#fff" @click="login()"   style="background: linear-gradient(to right, #1A6EB7, #01A89E,#01A89E,#01A89E, #3E63F9);" size="large" variant="tonal">
           Log In
         </v-btn>
         <v-card-text class="text-center">
-        <router-link class="text-decoration-none" to="/signup" style="color: #36013c;">
-           Sign Up Now <v-icon icon="mdi-chevron-right" style="color: #36013c;"></v-icon>
+        <router-link class="text-decoration-none" to="/signup" style="color: #1A6EB7;">
+           Sign Up Now <v-icon icon="mdi-chevron-right" style="color: #1A6EB7;"></v-icon>
           </router-link>
           </v-card-text>
       </v-card>
@@ -96,9 +97,10 @@ export default {
 </script>
  <style scoped>
  .c  {
-   margin-top: -60px;
-   
-   box-shadow:solid 0 0 15px #36013c;
+  margin-top: -60px;
+  
+  margin-bottom: 20px;
+  background-color: #f5f6f7;
  }
  </style>
  

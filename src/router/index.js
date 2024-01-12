@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import forms from '../views/Forms.vue'
 import formLogin from '../views/FormLogin.vue' 
 import formSignup from '../views/FormSignup.vue' 
- 
+import alert from '../views/AlertT.vue' 
 const routes = [
    
    {
@@ -17,6 +17,15 @@ const routes = [
   }, {
     path: '/signup',
     component:formSignup
+    
+  }, {
+    path: '/history',
+    component:forms
+    
+  }
+  , {
+    path: '/alert',
+    component:alert
     
   }
 ]
